@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import TopNav from "../../Components/TopNav";
 import { phrases } from "../../constants/phrases";
 import LottieWebPlayer from "../../Components/LottieWebPlayer";
+import { stringify } from "querystring";
 
 const Home: React.FC = () => {
   const [currentEnglishPhrase, setCurrentEnglishPhrase] = useState("");
@@ -9,14 +10,35 @@ const Home: React.FC = () => {
   const [confetti, setConfetti] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const [bestGuess, setBestGuess] = useState("");
-  const englishPhrases = Object.keys(phrases);
-  
+
+  const phraseObject = () => {
+    const masterPhraseObj: Record<string, string>= {}
+    Object.values(phrases).map((categoryObject: Record<string, string>) => {
+      Object.keys(categoryObject).map((phrase) => {
+        masterPhraseObj[phrase] = categoryObject[phrase]
+      })
+    })
+    return masterPhraseObj;
+  }
+
+  const allPhrases = phraseObject()
+
+  // const initialPhrases =() => {
+  //   const engPhrases: string[] = [];
+  //   Object.values(phrases).map((categoryObject: Record<string, string>) => {
+  //     engPhrases.concat(Object.keys(categoryObject))
+  //   });
+  //   return engPhrases
+  // }
+  // const [englishPhrases] = useState(initialPhrases);
+
+  const englishPhrases = Object.keys(allPhrases)
 
   const showItalian = () => {
     if (translation) {
       setTranslation("");
     } else {
-      const italian = phrases[currentEnglishPhrase];
+      const italian = allPhrases[currentEnglishPhrase];
       setTranslation(italian);
     }
   }
@@ -31,7 +53,7 @@ const Home: React.FC = () => {
         setWrongAnswer(true);
       }
     } else {
-      if (bestGuess.toLowerCase() === phrases[currentEnglishPhrase].toLowerCase()) {
+      if (bestGuess.toLowerCase() === allPhrases[currentEnglishPhrase].toLowerCase()) {
         setConfetti(true);
         setWrongAnswer(false)
       } else {
