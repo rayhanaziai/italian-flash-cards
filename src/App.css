@@ -14,19 +14,234 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #FFC0CB;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.topnav-container {
+  background-color: #fff3b8;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+}
+
+
+/* .card {
+  background-color: #fff3b8;
+  width: 400px;
+  height: 200px;
+} */
+
+.home-container {
+  margin-top: 40px;
+  color: black;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: auto;
+}
+.input-section input {
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.lottie-container-confetti {
+  position: absolute;
+  top: 5%;
+}
+
+.button-container {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flag {
+  margin-top: 20px;
+  width: 20px;
+}
+.home-container button {
+  padding: 9px 32px;
+  cursor: pointer;
+  border-radius: 21px;
+  font-size: var(--button-font-size);
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  background: white;
+  color: var(--white);
+  margin-bottom:10px;
+}
+
+.correct-answer {
+  border: solid;
+  border-width: 5px;
+  border-color: lightgreen;
+}
+
+.wrong-answer {
+  border: solid;
+  border-width: 5px;
+  border-color: red;
+}
+
+.next-phrase {
+  background-color: #00bbd4 !important;
+}
+
+mark {
+  background: var(--color-accent);
+  color: var(--color-text);
+  font-weight: bold;
+  padding: 0 0.2em;
+}
+
+.card {
+  background-color: #fff3b8;
+  width: 400px;
+  height: auto;
+  padding: calc(4 * var(--size-bezel));
+  margin-top: calc(4 * var(--size-bezel));
+  border-radius: var(--size-radius);
+  border: 3px solid var(--color-shadow, currentColor);
+  box-shadow: .5rem .5rem 0 var(--color-shadow, currentColor);
+  
+  &--inverted {
+    --color-background: var(--color-dark);
+    color: var(--color-light);
+    --color-shadow: var(--color-accent);
+  }
+  
+  &--accent {
+    --color-background: var(--color-signal);
+    --color-accent: var(--color-light);
+    color: var(--color-dark);
+  }
+  
+  *:first-child {
+    margin-top: 0;
+  }
+}
+
+
+.l-design-widht {
+  max-width: 40rem;
+  padding: 1rem;
+}
+
+.input-section {
+  position: relative;
+  
+  &__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+    margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+    background: pink;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: var(--color-background);
+    transition: transform 120ms ease-in;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  &__field {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 3px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius);
+    &:focus,
+    &:not(:placeholder-shown) {
+      & + .input__label {
+        transform: translate(.25rem, -65%) scale(.8);
+        color: var(--color-accent);
+      }
+    }
+  }
+}
+
+.input-section-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+    margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+    background: pink;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: var(--color-background);
+    transition: transform 120ms ease-in;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+.input-section-field {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 3px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius);
+}    
+
+.button-group {
+  margin-top: calc(var(--size-bezel) * 2.5);
+}
+
+button {
+  color: currentColor;
+  padding: var(--size-bezel) calc(var(--size-bezel) * 2);
+  background: var(--color-accent);
+  border: none;
+  border-radius: var(--size-radius);
+  font-weight: 900;
+  
+  &[type=reset]{
+    background: var(--color-background);
+    font-weight: 200;
+  } 
+}
+
+button + button {
+  margin-left: calc(var(--size-bezel) * 2);
+}
+
+.icon {
+  display: inline-block;
+  width: 1em; height: 1em;
+  margin-right: .5em;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
 
 @keyframes App-logo-spin {
   from {
