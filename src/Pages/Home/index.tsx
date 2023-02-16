@@ -84,6 +84,11 @@ const Home: React.FC = () => {
     setBestGuess("");
   }, [translation, currentEnglishPhrase])
 
+  useEffect(() => {
+    if (confetti) {
+      const myTimeout = setTimeout(() => setConfetti(false), 1000);
+    }
+  }, [confetti])
 
   return (
     <div>
