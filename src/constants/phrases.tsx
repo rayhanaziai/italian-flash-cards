@@ -119,6 +119,6 @@ export const phrases: Record<string, Record<string, string>> = {
         "to answer (past)": "ho risposto",
         "to write (past)": "ho scripto",
         "to spend (past)": "ho speso",
-        "to see (past)": "hi visto OR veduto"
+        "to see (past)": "ho visto OR veduto"
     }
 }
