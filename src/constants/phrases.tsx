@@ -101,5 +101,24 @@ export const phrases: Record<string, Record<string, string>> = {
         "SUPERMAN-DAVE-C: E(2) (past)": "entrato",
         "SUPERMAN-DAVE-C: C (verb)": "cadere",
         "SUPERMAN-DAVE-C: C (past)": "caduto",
+    },
+    "avere past tense": {
+        "to open (past)": "ho aperto",
+        "to drink (past)": "ho bevuto",
+        "to ask (past)": "ho chiesto",
+        "to close (past)": "ho chiupo",
+        "to know (past)": "ho conosciuto",
+        "to decide (past)": "ho diciso",
+        "to say (past)": "ho detto",
+        "to do (past)": "ho fatto",
+        "to read (past)": "ho letto",
+        "to put (past)": "ho messo",
+        "to offer (past)": "ho offerto",
+        "to lose (past)": "ho perso OR perduto",
+        "to take (past)": "ho preso",
+        "to answer (past)": "ho risposto",
+        "to write (past)": "ho scripto",
+        "to spend (past)": "ho speso",
+        "to see (past)": "hi visto OR veduto"
     }
 }

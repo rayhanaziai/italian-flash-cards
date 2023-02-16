@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TopNav from "../../Components/TopNav";
 import { phrases } from "../../constants/phrases";
 import LottieWebPlayer from "../../Components/LottieWebPlayer";
 import { stringify } from "querystring";
+import { autoFocusInput } from "../../helpers";
 
 const Home: React.FC = () => {
   const [currentEnglishPhrase, setCurrentEnglishPhrase] = useState("");
@@ -10,6 +11,8 @@ const Home: React.FC = () => {
   const [confetti, setConfetti] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const [bestGuess, setBestGuess] = useState("");
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const phraseObject = () => {
     const masterPhraseObj: Record<string, string>= {}
@@ -63,6 +66,10 @@ const Home: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    autoFocusInput(inputRef, 1);
+  }, [currentEnglishPhrase]);
+
   const onNextClick = () => {
     setTranslation("");
     const randomPhrase = englishPhrases[Math.floor(Math.random() * englishPhrases.length)];
@@ -85,8 +92,12 @@ const Home: React.FC = () => {
   }, [translation, currentEnglishPhrase])
 
   useEffect(() => {
+    const afterTimer = () => {
+      setConfetti(false);
+      onNextClick();
+    }
     if (confetti) {
-      const myTimeout = setTimeout(() => setConfetti(false), 1000);
+      const myTimeout = setTimeout(afterTimer, 1000);
     }
   }, [confetti])
 
@@ -112,6 +123,7 @@ const Home: React.FC = () => {
               id={translation ? "englishGuess" : "italianGuess"}
               onChange={(e) => onChange(translation ? "englishGuess" : "italianGuess", e.currentTarget.value)}
               maxLength={128}
+              ref={inputRef}
             />
             <button className={`${confetti ? "correct-answer": ""} ${wrongAnswer ? "wrong-answer" : ""}`} onClick={onCheckGuess}>Check</button>
             </div>
