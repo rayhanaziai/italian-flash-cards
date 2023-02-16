@@ -106,7 +106,7 @@ export const phrases: Record<string, Record<string, string>> = {
         "to open (past)": "ho aperto",
         "to drink (past)": "ho bevuto",
         "to ask (past)": "ho chiesto",
-        "to close (past)": "ho chiupo",
+        "to close (past)": "ho chiuso",
         "to know (past)": "ho conosciuto",
         "to decide (past)": "ho diciso",
         "to say (past)": "ho detto",
@@ -114,11 +114,11 @@ export const phrases: Record<string, Record<string, string>> = {
         "to read (past)": "ho letto",
         "to put (past)": "ho messo",
         "to offer (past)": "ho offerto",
-        "to lose (past)": "ho perso OR perduto",
+        "to lose (past)": "ho perso OR ho perduto",
         "to take (past)": "ho preso",
         "to answer (past)": "ho risposto",
-        "to write (past)": "ho scripto",
+        "to write (past)": "ho scritto",
         "to spend (past)": "ho speso",
-        "to see (past)": "ho visto OR veduto"
+        "to see (past)": "ho visto OR ho veduto"
     }
 }
