@@ -11,6 +11,8 @@ const Home: React.FC = () => {
   const [confetti, setConfetti] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const [bestGuess, setBestGuess] = useState("");
+  const [completedPhrases, setCompletedPhrases] = useState([currentEnglishPhrase]);
+  const [allPhrasesViewed, setAllPhrasesViewed] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,16 +27,6 @@ const Home: React.FC = () => {
   }
 
   const allPhrases = phraseObject()
-
-  // const initialPhrases =() => {
-  //   const engPhrases: string[] = [];
-  //   Object.values(phrases).map((categoryObject: Record<string, string>) => {
-  //     engPhrases.concat(Object.keys(categoryObject))
-  //   });
-  //   return engPhrases
-  // }
-  // const [englishPhrases] = useState(initialPhrases);
-
   const englishPhrases = Object.keys(allPhrases)
 
   const showItalian = () => {
@@ -66,19 +58,31 @@ const Home: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    autoFocusInput(inputRef, 1);
-  }, [currentEnglishPhrase]);
-
   const onNextClick = () => {
+    setCompletedPhrases((v) => [
+      ...v,
+      currentEnglishPhrase
+    ])
     setTranslation("");
-    const randomPhrase = englishPhrases[Math.floor(Math.random() * englishPhrases.length)];
-    setCurrentEnglishPhrase(randomPhrase);
+    if (completedPhrases.length >= englishPhrases.length) {
+      setAllPhrasesViewed(true);
+    } else {
+      let randomPhrase = englishPhrases[Math.floor(Math.random() * englishPhrases.length)];
+      while (completedPhrases.includes(randomPhrase)) {
+        randomPhrase = englishPhrases[Math.floor(Math.random() * englishPhrases.length)];
+      }
+      setCurrentEnglishPhrase(randomPhrase);
+    }
+
   }
 
   const onChange = (_field: string, value: string) => {
     setBestGuess(value);
   }
+
+  useEffect(() => {
+    autoFocusInput(inputRef, 1);
+  }, [currentEnglishPhrase]);
 
   useEffect(() => {
     const randomPhrase = englishPhrases[Math.floor(Math.random() * englishPhrases.length)];
@@ -97,9 +101,9 @@ const Home: React.FC = () => {
       onNextClick();
     }
     if (confetti) {
-      const myTimeout = setTimeout(afterTimer, 1000);
+      setTimeout(afterTimer, 1000);
     }
-  }, [confetti])
+  }, [confetti, onNextClick])
 
   return (
     <div>
@@ -119,17 +123,19 @@ const Home: React.FC = () => {
              <input
               type={"text"}
               value={bestGuess}
-              placeholder={"input guess here"}
+              placeholder={"type translation here..."}
               id={translation ? "englishGuess" : "italianGuess"}
               onChange={(e) => onChange(translation ? "englishGuess" : "italianGuess", e.currentTarget.value)}
               maxLength={128}
               ref={inputRef}
             />
-            <button className={`${confetti ? "correct-answer": ""} ${wrongAnswer ? "wrong-answer" : ""}`} onClick={onCheckGuess}>Check</button>
+            <button className={`${confetti ? "correct-answer": ""} ${wrongAnswer ? "wrong-answer" : ""}`} onClick={onCheckGuess}>Check Answer</button>
             </div>
             {translation ? <button className="next-phrase" onClick={onNextClick}>{"Next Phrase >"}</button> : <></>}  
         </div>
         </div>
+        {allPhrasesViewed && <h1>OOPS! ALL PHRASES HAVE BEEN TESTED ALREADY</h1>}
+        {allPhrasesViewed && <h1>Refresh the page to reset!</h1>}
         {confetti &&
             <LottieWebPlayer
               className="lottie-container-confetti"
