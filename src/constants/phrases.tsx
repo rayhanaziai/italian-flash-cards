@@ -1,4 +1,4 @@
-export const phrases: Record<string, Record<string, string>> = {
+export const notUsedphrases: Record<string, Record<string, string>> = {
     "weather": {
         "it is sunny": "c'è il sole",
         "the summer": "l'estate",
@@ -72,6 +72,8 @@ export const phrases: Record<string, Record<string, string>> = {
         "painting": "il quadro",
         "glass": "il bicchiere",
     },
+}
+export const phrases: Record<string, Record<string, string>> = {
     "past tense verbs": {
         "SUPERMAN-DAVE-C: S (verb)": "stare",
         "SUPERMAN-DAVE-C: S (past)": "stato",
